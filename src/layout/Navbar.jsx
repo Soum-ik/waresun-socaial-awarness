@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
-
 import { IoMenuSharp } from "react-icons/io5";
 import { FaCircleUser } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
@@ -8,6 +7,10 @@ import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import Deshboard from "../components/Deshboard";
+import { api } from '../libs/serverChecking';
+
+
+
 const Navbar = () => {
     const [showModalLogin, setshowModalLogin] = useState(false);
     const [showModaRegistration, setshowModaRegistration] = useState(false);
@@ -55,7 +58,7 @@ const Navbar = () => {
             setSuccessRegistration('Password do not match ?');
         } else {
             try {
-                const response = await fetch('http://localhost:4000/registration', {
+                const response = await fetch(`${api.config}registration`, {
                     method: 'post',
                     body: JSON.stringify({ name, email, password }),
                     headers: { 'Content-type': 'application/json' }
@@ -74,7 +77,7 @@ const Navbar = () => {
     const Login = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:4000/login', {
+            const response = await fetch(`${api.config}login`, {
                 method: 'post',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({ email, password })

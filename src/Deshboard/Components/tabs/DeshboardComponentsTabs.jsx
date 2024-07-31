@@ -4,14 +4,17 @@ import { Factory } from 'lucide-react';
 import { StickyNote } from 'lucide-react';
 import { HiMiniUsers } from "react-icons/hi2";
 import { useBusiness } from "../../../hooks/useFetchData";
+import { api } from "../../../libs/serverChecking";
 
 
 function DeshboardComponentsTabs() {
 
-    const businessPosts = useBusiness('http://localhost:4000/business-deshboard');
-    const capaignPosts = useBusiness('http://localhost:4000/campains-deshboard');
-    const allUser = useBusiness('http://localhost:4000/all-user');
+    const businessPosts = useBusiness(`${api.config}business-deshboard`);
+    const capaignPosts = useBusiness(`${api.config}campains-deshboard`);
+    const allUser = useBusiness(`${api.config}all-user`);
 
+
+    console.log(allUser,);
 
     return (
         <DeshboardLayout>
@@ -26,7 +29,7 @@ function DeshboardComponentsTabs() {
                 <div className=" grid grid-cols-1 lg:grid-cols-3 gap-3 sm:grid-cols-2">
                     <div className="flex items-center justify-between p-8 bg-white w-[300px] rounded-2xl border border-input">
                         <div>
-                            <h2 className="text-4xl font-bold mb-2 text-center">{allUser.length}</h2>
+                            <h2 className="text-4xl font-bold mb-2 text-center">{allUser.length || <p className=" text-xs"> Loading...</p>}</h2>
                             <p className="text-base font-medium">Total User</p>
                         </div>
                         <div>
@@ -35,7 +38,7 @@ function DeshboardComponentsTabs() {
                     </div>
                     <div className="flex items-center justify-between p-8 bg-white w-[300px] rounded-2xl border border-input">
                         <div>
-                            <h2 className="text-4xl font-bold mb-2 text-center">{capaignPosts.length}</h2>
+                            <h2 className="text-4xl font-bold mb-2 text-center">{capaignPosts.length || <p className=" text-xs">Loading...</p>}</h2>
                             <p className="text-base font-medium">Total Campaign Post</p>
                         </div>
                         <div>
@@ -44,7 +47,7 @@ function DeshboardComponentsTabs() {
                     </div>
                     <div className="flex items-center justify-between p-8 bg-white w-[300px] rounded-2xl border border-input">
                         <div>
-                            <h2 className="text-4xl font-bold mb-2 text-center">{businessPosts.length}</h2>
+                            <h2 className="text-4xl font-bold mb-2 text-center">{businessPosts.length || <p className=" text-xs">Loading...</p>}</h2>
                             <p className="text-base font-medium">Total Business Post</p>
                         </div>
                         <div>

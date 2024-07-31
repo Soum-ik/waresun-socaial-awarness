@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 import Cookies from 'js-cookie';
 import useImageUpload from "../hooks/useImageUpload";
 import toast from "react-hot-toast";
+import { api } from "../libs/serverChecking";
 
 function CampaignListTable({ close }) {
     const [posts, setPosts] = useState([]);
@@ -22,7 +23,7 @@ function CampaignListTable({ close }) {
     useEffect(() => {
         const fetching = async () => {
             try {
-                const response = await fetch(`http://localhost:4000/posts/${token}`);
+                const response = await fetch(`${api.config}posts/${token}`);
                 const data = await response.json();
                 setPosts(data.data);
             } catch (error) {
@@ -50,7 +51,7 @@ function CampaignListTable({ close }) {
 
     const handleEditSubmit = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/update-post/${editingPost._id}`, {
+            const response = await fetch(`${api.config}update-post/${editingPost._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ function CampaignListTable({ close }) {
                 const updatedPost = await response.json();
                 setPosts(posts.map(post => (post._id === updatedPost.data._id ? updatedPost.data : post)));
                 setEditingPost(null);
-                toast.success('Post updated successfully'   );
+                toast.success('Post updated successfully');
                 console.log('Post updated successfully');
             } else {
                 console.error('Failed to update post');
@@ -76,7 +77,7 @@ function CampaignListTable({ close }) {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4000/delete-post/${id}`, {
+            const response = await fetch(`${api.config}delete-post/${id}`, {
                 method: 'DELETE',
             });
 
@@ -130,7 +131,7 @@ function CampaignListTable({ close }) {
                             {posts.map((post, idx) => (
                                 <tr key={idx} className="hover:bg-gray-50">
                                     <td className="px-6 py-4">
-                                    <img className="w-40 mb-2" src={post.image} alt="Uploaded File" />
+                                        <img className="w-40 mb-2" src={post.image} alt="Uploaded File" />
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">

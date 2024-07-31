@@ -1,17 +1,18 @@
 import toast, { Toaster } from "react-hot-toast";
 import { useBusiness } from "../../../hooks/useFetchData";
 import DeshboardLayout from "../../layouts/masterLayout";
+import { api } from "../../../libs/serverChecking";
 
 
 function BusinessControle() {
 
- 
 
-  const allbusiness = useBusiness('http://localhost:4000/business-deshboard');
+
+  const allbusiness = useBusiness(`${api.config}business-deshboard`);
 
   const handleDisable = async (id) => {
     try {
-      const update = await fetch(`http://localhost:4000/business-deshboard-update/${id}`, {
+      const update = await fetch(`${api.config}business-deshboard-update/${id}`, {
         method: "put"
       });
       const res = await update.json();

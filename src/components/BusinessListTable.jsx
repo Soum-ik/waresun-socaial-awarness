@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 import Cookies from 'js-cookie';
 import useImageUpload from "../hooks/useImageUpload";
 import toast from "react-hot-toast";
+import { api } from "../libs/serverChecking";
 
 function BusinessListTable({ close }) {
     const [posts, setPosts] = useState([]);
@@ -27,7 +28,7 @@ function BusinessListTable({ close }) {
         const fetching = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:4000/business-promotion/${token}`);
+                const response = await fetch(`${api.config}business-promotion/${token}`);
                 const data = await response.json();
                 setPosts(data.data);
                 setFetchError(null);
@@ -61,7 +62,7 @@ function BusinessListTable({ close }) {
 
     const handleEditSubmit = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/update-business-promotion/${editingPost._id}`, {
+            const response = await fetch(`${api.config}update-business-promotion/${editingPost._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +88,7 @@ function BusinessListTable({ close }) {
 
     const handleDelete = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4000/delete-business-promotion/${id}`, {
+            const response = await fetch(`${api.config}delete-business-promotion/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -120,7 +121,7 @@ function BusinessListTable({ close }) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-            <div className="mx-auto max-w-3xl relative z-50 text-black w-full rounded-lg shadow-xl bg-white">
+            <div className="mx-auto max-w-6xl relative z-50 text-black w-full rounded-lg shadow-xl bg-white">
                 <CgClose onClick={handleClose} className="absolute mt-2 right-4 mb-3 bg-slate-100 size-8 rounded-xl p-1 cursor-pointer" />
                 {loading ? (
                     <div className="flex items-center justify-center h-full">

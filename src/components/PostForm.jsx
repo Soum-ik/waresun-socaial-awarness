@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 import useImageUpload from "../hooks/useImageUpload";
 import Cookies from "js-cookie";
 import toast, { Toaster } from "react-hot-toast";
+import { api } from "../libs/serverChecking";
 
 function PostForm({ close }) {
     const token = Cookies.get('authToken');
@@ -58,13 +59,13 @@ function PostForm({ close }) {
                 image: file,
                 token,
                 name: UserName,
-                
+
             };
 
             console.log(completeFormData, 'complete form');
 
             // Example POST request to your server
-            const response = await fetch('http://localhost:4000/create-post', {
+            const response = await fetch(`${api.config}create-post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -168,23 +169,23 @@ function PostForm({ close }) {
                         </div>
                     </div>
                     <div className="mb-2">
-                            <label
-                                htmlFor="email"
-                                className="mb-1 block text-xl font-semibold "
-                            >
-                                Cetagory type
-                            </label>
-                            <input
-                                name="goals"
-                                type="text"
-                                value={formData.goals}
-                                onChange={handleFormState}
-                                id="goals"
-                                placeholder="Enter your Cetagory type"
-                                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                            />
-                        </div>
-                     
+                        <label
+                            htmlFor="email"
+                            className="mb-1 block text-xl font-semibold "
+                        >
+                            Cetagory type
+                        </label>
+                        <input
+                            name="goals"
+                            type="text"
+                            value={formData.goals}
+                            onChange={handleFormState}
+                            id="goals"
+                            placeholder="Enter your Cetagory type"
+                            className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                        />
+                    </div>
+
                     <div className="mb-2">
                         <label className="  block text-xl font-semibold  ">
                             Upload File

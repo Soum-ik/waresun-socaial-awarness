@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 import useImageUpload from "../hooks/useImageUpload";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { api } from "../libs/serverChecking";
 
 function BusinessPromotionForm({ close }) {
     const token = Cookies.get('authToken');
@@ -44,10 +45,10 @@ function BusinessPromotionForm({ close }) {
                 ...formData,
                 logoOrProductImages: file,
                 token,
-              
+
             };
 
-            const response = await fetch('http://localhost:4000/create-business-promotion', {
+            const response = await fetch(`${api.config}create-business-promotion`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

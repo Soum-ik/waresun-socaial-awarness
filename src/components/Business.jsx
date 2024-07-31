@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Picture from '../assets/picture.png';
-import Cookies from "js-cookie";
+
 import { useParams } from 'react-router-dom';
 import { useBusiness } from '../hooks/useFetchData';
 import { User } from 'lucide-react';
+import { api } from '../libs/serverChecking';
 
 
 const Business = () => {
-	const token = Cookies.get('authToken');
 
 	const router = useParams();
 	console.log(router);
-	const posts = useBusiness('http://localhost:4000/business');
+	const posts = useBusiness(`${api.config}business`);
+
 
 	return (
 		<div className='md:px-12 p-4 max-w-screen-2xl mx-auto'>

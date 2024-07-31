@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Picture from '../assets/picture.png';
-import Cookies from "js-cookie";
-import { useParams } from 'react-router-dom';
+
 import { useBusiness } from '../hooks/useFetchData';
 
 import { User } from 'lucide-react';
+import { api } from '../libs/serverChecking';
 
 
 const Home = () => {
-	const token = Cookies.get('authToken');
 
-	const posts = useBusiness('http://localhost:4000/get-post');
+	// const postss = useBusiness(`https://social-awareness-backend.vercel.app//get-post`);
+	const posts = useBusiness(`${api.config}get-post`);
+	// const posts = useBusiness('http://localhost:4000/get-post');
 	console.log(posts, "posts data");
+
+
+
 	return (
 		<div className='md:px-12 p-4 max-w-screen-2xl mx-auto'>
 			{<div className="section">

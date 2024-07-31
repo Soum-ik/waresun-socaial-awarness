@@ -1,13 +1,14 @@
 import toast, { Toaster } from "react-hot-toast";
 import { useBusiness } from "../../../hooks/useFetchData";
 import DeshboardLayout from "../../layouts/masterLayout";
+import { api } from "../../../libs/serverChecking";
 
 function CampaignControle() {
-  const allcampains = useBusiness('http://localhost:4000/campains-deshboard');
+  const allcampains = useBusiness(`${api.config}campains-deshboard`);
   console.log(allcampains, "end datw");
   const handleDisable = async (id) => {
     try {
-      const update = await fetch(`http://localhost:4000/campains-deshboard-update/${id}`, {
+      const update = await fetch(`${api.config}campains-deshboard-update/${id}`, {
         method: "put"
       });
       const res = await update.json();
@@ -59,10 +60,10 @@ function CampaignControle() {
                   End Date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                Cetagory type
+                  Cetagory type
                 </th>
                 <th scope="col" class="px-6 py-3">
-               Status
+                  Status
                 </th>
 
                 <th scope="col" class="px-6 py-3">
@@ -99,7 +100,7 @@ function CampaignControle() {
 
                     {campains.goals}
                   </td>
-                   
+
 
                   <td class="px-6 py-4 text-right">
                     <a onClick={() => handleDisable(campains._id)} className=" cursor-pointer font-medium border p-2 text-blue-600 dark:text-blue-500 hover:underline">{campains.disable ? "Pending" : "Approved"}</a>

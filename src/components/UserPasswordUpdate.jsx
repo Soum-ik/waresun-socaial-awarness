@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { api } from "../libs/serverChecking";
 
 function PasswordUpdateForm({ close }) {
     const token = Cookies.get('authToken');
@@ -43,7 +44,7 @@ function PasswordUpdateForm({ close }) {
         setLoading(true);
 
         try {
-            const response = await fetch(`http://localhost:4000/update-user/${token}`, {
+            const response = await fetch(`${api.config}update-user/${token}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,16 +1,17 @@
 import toast, { Toaster } from "react-hot-toast";
 import { useBusiness } from "../../../hooks/useFetchData";
 import DeshboardLayout from "../../layouts/masterLayout";
+import { api } from "../../../libs/serverChecking";
 
 function UserControle() {
 
-  const allUser = useBusiness('http://localhost:4000/all-user');
+  const allUser = useBusiness(`${api.config}all-user`);
   let CurrentDate = Date.now();
-  CurrentDate.toLocaleString()
+  CurrentDate.toLocaleString();
 
   const handleDisable = async (id) => {
     try {
-      const update = await fetch(`http://localhost:4000/all-user-update/${id}`, {
+      const update = await fetch(`${api.config}all-user-update/${id}`, {
         method: "put"
       });
       const res = await update.json();
