@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .btnPrimary {
+      @apply py-3 px-8 bg-[#243A72] font-semibold text-white rounded  transition-all duration-300;
+    }
+    
+ }
