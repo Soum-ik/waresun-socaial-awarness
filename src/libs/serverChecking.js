@@ -1,4 +1,4 @@
 export const api = {
-    config: 'https://social-awareness-backend.vercel.app/',
+    config: 'https://api.wilteamfive.com/',
     // config: 'http://localhost:4000/',
 };
