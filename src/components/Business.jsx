@@ -39,7 +39,7 @@ const Business = () => {
 									{posts?.map((post, idx) => (
 										<div key={post._id} className='border-2 rounded-md p-3 mb-10 border-black/20'>
 											<div className="blog-post-meta">
-												<img src={post.logoOrProductImages} alt='' className='z-0 h-[200px] w-full object-cover shadow-sm' />
+												<img src={post.logoOrProductImages} alt='' className='z-0 h-[250px] w-full object-cover shadow-sm' />
 												<p className='blog-post-title text-lg font-bold py-2 pt-3'>{`${post.productsOrServices}`}</p>
 												<h3 className={`max-w-2xl mt-2  ${shortDes ? ' line-clamp-3' : ''}`}>{post.description}</h3>
 											</div>

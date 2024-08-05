@@ -3,8 +3,8 @@ import DeshboardComponentsTabs from "../Deshboard/Components/tabs/DeshboardCompo
 import AdminLogin from "../Deshboard/Components/AdminLogin";
 
 function Deshboard() {
-
     const token = Cookies.get("adminToken");
+
     return (token ?
         <DeshboardComponentsTabs />
         : <AdminLogin />);

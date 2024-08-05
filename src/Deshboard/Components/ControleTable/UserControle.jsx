@@ -7,8 +7,8 @@ import { relativeDate } from "../../../libs/utilits";
 function UserControle() {
 
   const allUser = useBusiness(`${api.config}all-user`);
- console.log(allUser, "user");
- 
+  console.log(allUser, "user");
+
 
   const handleDisable = async (id) => {
     try {
@@ -31,7 +31,7 @@ function UserControle() {
   };
 
   const handleDelete = async (id) => {
- 
+
     try {
       const update = await fetch(`${api.config}delete-user/${id}`, {
         method: "delete"
@@ -76,7 +76,7 @@ function UserControle() {
                 <th scope="col" className="px-6 py-3 text-end">
                   Status
                 </th>
-               
+
               </tr>
             </thead>
             <tbody>
@@ -91,7 +91,7 @@ function UserControle() {
                   </td>
                   <td className="px-6 py-4">
                     {/* {CurrentDate} */}
-                    {/* {relativeDate()} */}
+                    {relativeDate(user.updatedAt)}
                   </td>
 
                   <td className="px-6 py-4 text-right space-x-5 ">

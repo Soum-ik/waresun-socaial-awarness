@@ -40,7 +40,7 @@ const Home = () => {
 											<div key={idx} className='border-2 rounded-md p-3 mb-10 border-black/20'>
 												<div className="blog-post-meta">
 													<h3 className="blog-post-title text-lg font-bold py-2">{post.title}</h3>
-													<img src={post.image} alt='' className='z-0 h-[200px] w-full object-cover shadow-sm' />
+													<img src={post.image} alt='' className='z-0 h-[250px] w-full object-cover shadow-sm' />
 													<p className='py-2'>{`Publish Date - ${post.startDate}`}</p>
 													<p className='mt-1 font-bold'>{`Category - ${post.goals}`}</p>
 												</div>
